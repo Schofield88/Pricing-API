@@ -1,6 +1,7 @@
 const express = require('express');
 
 const api = express.Router();
+const processOrder = require('../src/processOrder');
 
 // test GET request
 api.get('/order', (req, res, next) => {
@@ -9,7 +10,7 @@ api.get('/order', (req, res, next) => {
 
 // test POST request
 api.post('/order', (req, res, next) => {
-  res.send('You have sent me some json');
+  res.json(processOrder(req));
 });
 
 module.exports = api;
