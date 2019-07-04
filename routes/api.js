@@ -1,16 +1,13 @@
 const express = require('express');
 
 const api = express.Router();
-const processOrder = require('../src/processOrder');
+const Processor = require('../src/processor');
 
-// test GET request
-api.get('/order', (req, res, next) => {
-  res.send('Order received');
-});
+const processor = new Processor();
 
 // test POST request
 api.post('/order', (req, res, next) => {
-  res.json(processOrder(req));
+  res.json(processor.process(req));
 });
 
 module.exports = api;

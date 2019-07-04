@@ -1,4 +1,4 @@
-const process = require('../src/processOrder');
+const Processor = require('../src/processor');
 
 const order = {
   order: {
@@ -22,8 +22,9 @@ const invoice = {
   },
 };
 
-describe('processOrder', () => {
+describe('processor', () => {
   it('returns a skeleton invoice response', () => {
-    expect(process(order)).toEqual(invoice);
+    const processor = new Processor();
+    expect(processor.process(order)).toEqual(invoice);
   });
 });
