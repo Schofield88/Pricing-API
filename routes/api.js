@@ -7,7 +7,7 @@ const processor = new Processor();
 
 // test POST request
 api.post('/order', (req, res, next) => {
-  res.json(processor.process(req));
+  res.json(processor.process(req.body));
 });
 
 module.exports = api;

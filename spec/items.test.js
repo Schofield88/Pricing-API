@@ -45,6 +45,6 @@ describe('Items', () => {
     ];
 
     const items = new Items();
-    expect(items.populateItems(itemsArray)).toEqual(populatedItemsArray);
+    expect(items.buildItems(itemsArray)).toEqual(populatedItemsArray);
   });
 });

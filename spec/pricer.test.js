@@ -1,4 +1,4 @@
-const Pricer = require('../src/pricer');
+const Pricer = require('../src/price');
 
 describe('Pricer', () => {
   it('adds the pricing data to the array', () => {

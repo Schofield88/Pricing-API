@@ -1,7 +1,7 @@
 // require filesystem module
 const fs = require('fs');
 
-function Pricer() {
+function Price() {
   // this helper function extracts the price of each item from the pricing data
   function getUnitPrice(element, pricing) {
     const item = element;
@@ -62,4 +62,4 @@ function Pricer() {
   });
 }
 
-module.exports = Pricer;
+module.exports = Price;
