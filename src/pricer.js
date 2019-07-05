@@ -45,9 +45,7 @@ function Pricer() {
     const pricingData = JSON.parse(rawPricingJson);
     // remaps the array of order items to include pricing data
     const itemsWithPrice = items.map((item) => {
-      const newEntry = {};
-      newEntry.product_id = item.product_id;
-      newEntry.quantity = item.quantity;
+      const newEntry = item;
       // use the private helper function getUnitPrice() to recover the item's price
       newEntry.unit_price = getUnitPrice(item, pricingData);
       // use the private helper getUnitVat() to recover VAT data
