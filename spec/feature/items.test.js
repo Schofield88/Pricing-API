@@ -1,29 +1,23 @@
-const SubTotal = require('../src/subTotal');
+const Items = require('../../src/items');
 
-describe('SubTotal', () => {
-  it('adds the sub-totals to the items array', () => {
-    const items = [
+describe('Items', () => {
+  it('returns the built items array', () => {
+    const itemsArray = [
       {
         product_id: 1,
         quantity: 1,
-        unit_price: 599,
-        unit_vat: 120,
       },
       {
         product_id: 2,
         quantity: 5,
-        unit_price: 250,
-        unit_vat: 0,
       },
       {
         product_id: 3,
         quantity: 1,
-        unit_price: 250,
-        unit_vat: 0,
       },
     ];
 
-    const itemsWithSubTotals = [
+    const populatedItemsArray = [
       {
         product_id: 1,
         quantity: 1,
@@ -49,7 +43,8 @@ describe('SubTotal', () => {
         sub_vat: 0,
       },
     ];
-    const subTotal = new SubTotal();
-    expect(subTotal.calculate(items)).toEqual(itemsWithSubTotals);
+
+    const items = new Items();
+    expect(items.buildItems(itemsArray)).toEqual(populatedItemsArray);
   });
 });

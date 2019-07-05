@@ -1,4 +1,4 @@
-const GrandTotal = require('../src/grandTotal');
+const GrandTotal = require('../../src/grandTotal');
 
 describe('GrandTotal', () => {
   it('calulates the various order totals', () => {

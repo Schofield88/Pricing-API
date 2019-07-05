@@ -1,4 +1,4 @@
-const Processor = require('../src/processor');
+const Processor = require('../../src/processor');
 
 describe('Processor', () => {
   it('returns a full invoice response', (done) => {
