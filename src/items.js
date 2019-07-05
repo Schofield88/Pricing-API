@@ -6,6 +6,7 @@ function Items() {
   subTotal = new SubTotal();
 
   function buildItems(array) {
+    // call the Price and SubTotal factory functions and collect the processed items array
     const itemsWithPrice = price.price(array);
     const itemsWithSubTotals = subTotal.calculate(itemsWithPrice);
     return itemsWithSubTotals;

@@ -6,7 +6,9 @@ function Processor() {
   const grandTotal = new GrandTotal();
 
   function process(json) {
-    const myJson = json;
+    // grab the items array
+    const myJson = json.order.items;
+    // build the invoice skeleton
     const customer = {
       invoice: {
         order_net: 0,
@@ -15,11 +17,12 @@ function Processor() {
         items: [],
       },
     };
-
-    const itemsArray = items.buildItems(myJson.order.items);
+    // build the full items array
+    const itemsArray = items.buildItems(myJson);
+    // assign the items array to the invoice
     customer.invoice.items = itemsArray;
+    // calculate and assign the three order totals to complete the response
     const final = grandTotal.calculate(customer);
-
     return final;
   }
 

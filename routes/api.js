@@ -5,7 +5,7 @@ const Processor = require('../src/processor');
 
 const processor = new Processor();
 
-// test POST request
+// api/order POST request end point
 api.post('/order', (req, res, next) => {
   res.json(processor.process(req.body));
 });
