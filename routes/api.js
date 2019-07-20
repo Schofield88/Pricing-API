@@ -1,13 +1,9 @@
 const express = require('express');
+const order = require('../controllers/orderController');
 
 const api = express.Router();
-const Processor = require('../src/processor');
-
-const processor = new Processor();
 
 // api/order POST request end point
-api.post('/order', (req, res, next) => {
-  res.json(processor.process(req.body));
-});
+api.post('/order', order.process);
 
 module.exports = api;

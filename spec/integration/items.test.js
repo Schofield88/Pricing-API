@@ -1,4 +1,6 @@
 const Items = require('../../src/items');
+const Price = require('../../src/price');
+const SubTotal = require('../../src/subTotal');
 
 describe('Items', () => {
   it('returns the built items array', () => {
@@ -44,7 +46,9 @@ describe('Items', () => {
       },
     ];
 
-    const items = new Items();
+    const price = new Price();
+    const subTotal = new SubTotal();
+    const items = new Items(price, subTotal);
     expect(items.buildItems(itemsArray)).toEqual(populatedItemsArray);
   });
 });
