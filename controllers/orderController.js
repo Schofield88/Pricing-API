@@ -16,12 +16,10 @@ exports.process = (req, res, next) => {
       order_net: 0,
       order_vat: 0,
       order_gross: 0,
-      items: [],
+      items: items.buildItems(myJson),
     },
   };
 
-  const itemsArray = items.buildItems(myJson);
-  customer.invoice.items = itemsArray;
   const final = grandTotal.calculate(customer);
 
   res.json(final);
