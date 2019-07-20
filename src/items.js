@@ -1,20 +1,17 @@
 const Price = require('./price');
 const SubTotal = require('./subTotal');
 
-function Items() {
-  price = new Price();
-  subTotal = new SubTotal();
-
-  function buildItems(array) {
-    // call the Price and SubTotal factory functions and collect the processed items array
-    const itemsWithPrice = price.price(array);
-    const itemsWithSubTotals = subTotal.calculate(itemsWithPrice);
-    return itemsWithSubTotals;
+class Items {
+  constructor() {
+    this.price = new Price();
+    this.subTotal = new SubTotal();
   }
 
-  return Object.freeze({
-    buildItems,
-  });
+  buildItems(array) {
+    // call the Price and SubTotal factory functions and collect the processed items array
+    const itemsWithPrice = this.price.price(array);
+    const itemsWithSubTotals = this.subTotal.calculate(itemsWithPrice);
+    return itemsWithSubTotals;
+  }
 }
-
 module.exports = Items;
