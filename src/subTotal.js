@@ -1,5 +1,5 @@
-function SubTotal() {
-  function calculate(itemsArray) {
+class SubTotal {
+  calculate(itemsArray) {
     const items = itemsArray;
     // iterate through the array of item objects and calculate the sub total and vat
     const itemsWithSubTotals = items.map((item) => {
@@ -11,10 +11,6 @@ function SubTotal() {
 
     return itemsWithSubTotals;
   }
-
-  return Object.freeze({
-    calculate,
-  });
 }
 
 module.exports = SubTotal;
