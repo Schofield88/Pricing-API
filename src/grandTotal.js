@@ -1,5 +1,5 @@
-function GrandTotal() {
-  function calculate(invoice) {
+class GrandTotal {
+  calculate(invoice) {
     const finalInvoice = invoice;
     const itemsArray = finalInvoice.invoice.items;
     let orderNet = 0;
@@ -18,10 +18,6 @@ function GrandTotal() {
 
     return finalInvoice;
   }
-
-  return Object.freeze({
-    calculate,
-  });
 }
 
 module.exports = GrandTotal;
