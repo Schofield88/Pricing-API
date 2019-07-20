@@ -1,11 +1,13 @@
 const Items = require('./items');
 const GrandTotal = require('./grandTotal');
 
-function Processor() {
-  const items = new Items();
-  const grandTotal = new GrandTotal();
+class Processor {
+  constructor() {
+    this.items = new Items();
+    this.grandTotal = new GrandTotal();
+  }
 
-  function process(json) {
+  process(json) {
     // grab the items array
     const myJson = json.order.items;
     // build the invoice skeleton
@@ -18,17 +20,13 @@ function Processor() {
       },
     };
     // build the full items array
-    const itemsArray = items.buildItems(myJson);
+    const itemsArray = this.items.buildItems(myJson);
     // assign the items array to the invoice
     customer.invoice.items = itemsArray;
     // calculate and assign the three order totals to complete the response
-    const final = grandTotal.calculate(customer);
+    const final = this.grandTotal.calculate(customer);
     return final;
   }
-
-  return Object.freeze({
-    process,
-  });
 }
 
 module.exports = Processor;
