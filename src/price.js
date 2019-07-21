@@ -1,9 +1,7 @@
-// require filesystem module
 const fs = require('fs');
 
-function Price() {
-  // this helper function extracts the price of each item from the pricing data
-  function getUnitPrice(element, pricing) {
+class Price {
+  getUnitPrice(element, pricing) {
     const item = element;
     const pricingData = pricing;
     let unitPrice;
@@ -18,7 +16,7 @@ function Price() {
     return unitPrice;
   }
 
-  function getUnitVat(element, pricing) {
+  getUnitVat(element, pricing) {
     const item = element;
     const pricingData = pricing;
     let vat;
@@ -36,30 +34,22 @@ function Price() {
     return Math.round(vat);
   }
 
-  function price(itemsArray) {
-    // assign the passed-in array of order items
+  price(itemsArray) {
     const items = itemsArray;
-    // read the pricing.json file
     const rawPricingJson = fs.readFileSync('pricing.json');
-    // parse the returned Buffer
     const pricingData = JSON.parse(rawPricingJson);
     // remaps the array of order items to include pricing data
     const itemsWithPrice = items.map((item) => {
       const newEntry = item;
       // use the private helper function getUnitPrice() to recover the item's price
-      newEntry.unit_price = getUnitPrice(item, pricingData);
+      newEntry.unit_price = this.getUnitPrice(item, pricingData);
       // use the private helper getUnitVat() to recover VAT data
-      newEntry.unit_vat = getUnitVat(item, pricingData);
+      newEntry.unit_vat = this.getUnitVat(item, pricingData);
       return newEntry;
     });
 
     return itemsWithPrice;
   }
-
-
-  return Object.freeze({
-    price,
-  });
 }
 
 module.exports = Price;

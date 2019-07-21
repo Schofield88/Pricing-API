@@ -103,7 +103,6 @@ describe('Items', () => {
 
     const priceMock = new Price();
     const subTotalMock = new SubTotal();
-
     const items = new Items(priceMock, subTotalMock);
 
     expect(items.buildItems(itemsArray)).toEqual(populatedItemsArray);
