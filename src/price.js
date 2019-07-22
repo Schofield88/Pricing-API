@@ -4,16 +4,10 @@ class Price {
   getUnitPrice(element, pricing) {
     const item = element;
     const pricingData = pricing;
-    let unitPrice;
-    // Iterate through the pricing data until the product IDs match, then pull
-    // the price from that object
-    pricingData.prices.forEach((priceElement) => {
-      if (priceElement.product_id === item.product_id) {
-        unitPrice = priceElement.price;
-      }
-    });
 
-    return unitPrice;
+    const unitPrice = pricingData.prices.find(prices => prices.product_id === item.product_id);
+
+    return unitPrice.price;
   }
 
   getUnitVat(element, pricing) {
@@ -41,9 +35,7 @@ class Price {
     // remaps the array of order items to include pricing data
     const itemsWithPrice = items.map((item) => {
       const newEntry = item;
-      // use the private helper function getUnitPrice() to recover the item's price
       newEntry.unit_price = this.getUnitPrice(item, pricingData);
-      // use the private helper getUnitVat() to recover VAT data
       newEntry.unit_vat = this.getUnitVat(item, pricingData);
       return newEntry;
     });
