@@ -3,9 +3,9 @@ const fs = require('fs');
 class Price {
   getUnitPrice(element, pricing) {
     const item = element;
-    const pricingData = pricing;
+    const pricingData = pricing.prices;
 
-    const unitPrice = pricingData.prices.find(prices => prices.product_id === item.product_id);
+    const unitPrice = pricingData.find(prices => prices.product_id === item.product_id);
 
     return unitPrice.price;
   }
@@ -13,19 +13,16 @@ class Price {
   getUnitVat(element, pricing) {
     const item = element;
     const pricingData = pricing;
-    let vat;
-    // Iterate through the pricing data to find the right product id, then
-    // use the VAT band from that object to get the VAT rate
-    pricingData.prices.forEach((priceDataElement) => {
-      if (priceDataElement.product_id === item.product_id) {
-        const unitPrice = priceDataElement.price;
-        const vatBand = priceDataElement.vat_band;
-        const rate = pricingData.vat_bands[vatBand];
-        vat = unitPrice * rate;
-      }
-    });
-    // return the VAT figure rounded to the nearest penny
-    return Math.round(vat);
+
+    const priceStuffForThisOne = pricingData.prices.find(
+      price => price.product_id === item.product_id,
+    );
+    const unitPrice = priceStuffForThisOne.price;
+    const vatBand = priceStuffForThisOne.vat_band;
+    const rate = pricingData.vat_bands[vatBand];
+    const vat = Math.round(unitPrice * rate);
+
+    return vat;
   }
 
   price(itemsArray) {
