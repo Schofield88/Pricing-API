@@ -138,3 +138,7 @@ The Post request requires a json body, samples of which are provided below:
 Paste one of these, or any json following this structure, into body of the request, click the "raw" radio button, and ensure the drop-down menu at the end is set to "JSON (application/json)".
 
 Press the blue Send button, and the response will appear in the window at the bottom.
+
+## Future Changes
+
+At the time of writing, the decision was made to create a separate class that would calculate the subtotal for each of the items array objects. In hindsight, this feels like an over-abstraction; the SubTotal class has no state and a single method, which probably belongs on the Price class. This will be refactored later, but for the moment has been left as-is because the test contains my first successful class mock in Jest. I may need this example sitting somewhere for a while.

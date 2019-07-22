@@ -19,6 +19,7 @@ class Price {
     const items = itemsArray;
     const rawPricingJson = fs.readFileSync('pricing.json');
     const pricingData = JSON.parse(rawPricingJson);
+
     // remaps the array of order items to include pricing data
     const itemsWithPrice = items.map((item) => {
       const newEntry = item;
